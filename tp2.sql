@@ -14,7 +14,9 @@ CREATE TABLE EMP
         EMBAUCHE DATE,
         SALAIRE NUMBER(7,2),
         COMM NUMBER(7,2),
-        N_DEPT NUMBER(3));    
+        N_DEPT NUMBER(3));  
+
+alter table emp add constraint emp_pk primary key (num);
 
 INSERT INTO EMP VALUES
         ('MARTIN',16712,'directeur',25717,'23-MAY-90',20000,NULL,30);
@@ -59,7 +61,7 @@ CREATE TABLE DEPT
         NOM VARCHAR2(14),
         LIEU VARCHAR2(13) );
 
-
+alter table dept add constraint emp_pk primary key (n_dept);
 
 INSERT INTO DEPT VALUES
         (10,'recherche','Rennes');
@@ -72,6 +74,37 @@ INSERT INTO DEPT VALUES
 COMMIT;
 
 --requetes
+
+--1
+select nom, fonction, embauche from emp;
+
+--2
+select num, nom, salaire from emp where salaire <= 2000;
+
+--3
+select nom from emp where comm is not null order by comm desc;
+
+--4
+select nom, embauche from emp where embauche >= '01-JAN-91';
+
+--5
+select emp.nom, lieu from emp join dept on emp.N_DEPT = dept.N_DEPT;
+
+--6
+select e1.nom employe, e2.nom superieur from emp e1 join emp e2 on e1.N_SUP = e2.num;
+
+--7
+select nom from emp where fonction  = (select fonction from emp where nom = 'CODD');
+
+--8
+select nom, salaire from emp where salaire >= (select max(salaire) from emp where n_dept = 30);
+
+--9
+select e1.nom employe from emp e1 join emp e2 on e1.N_SUP = e2.num where e1.n_dept != e2.n_dept;
+
+--10
+select nom from emp where n_dept in (select n_dept from emp where embauche >= '01-JAN-98');
+
 
 
 
