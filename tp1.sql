@@ -1,4 +1,4 @@
-﻿--suppression des tables
+--suppression des tables
 
 drop table fournisseurs;
 drop table prix;
@@ -95,6 +95,14 @@ select nomP, AVG(cout) from prix group by nomP;
 --insertion
 
 insert into commandes (nCom,nomC,nomP,qte) values (6,'paul','ciment',12);
+
+update Clients set adresseC = '83000 Toulon' where nomC = 'jean';
+
+update prix set cout = cout * 1.15 where nomF = 'Samaco';
+
+update fournisseurs set nomF = 'Technal', adresseF = '69005 Lyon' where nomF = 'Samaco';
+
+ 
 
 
 
