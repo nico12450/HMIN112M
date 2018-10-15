@@ -105,6 +105,24 @@ select e1.nom employe from emp e1 join emp e2 on e1.N_SUP = e2.num where e1.n_de
 --10
 select nom from emp where n_dept in (select n_dept from emp where embauche >= '01-JAN-98');
 
+--11
+select nom, fonction, salaire from emp where salaire in (select max(salaire) from emp);
 
+--12
+select n_dept, sum(salaire), count(nom), min(salaire), avg(salaire), max(salaire) from emp group by n_dept;
+
+--13
+drop view nbEmpDep;
+create view nbEmpDep as select n_dept, count(*) nb from emp group by n_dept;
+select distinct n_dept from emp where n_dept in (select n_dept from nbEmpDep where nb = (select max(nb) from nbEmpDep));
+
+--14
+select distinct n_dept from emp where n_dept not in (select n_dept from emp where fonction = 'ingenieur');
+
+--15
+--la vue renvoie l'ensemble des fonctions exercées par les employés des divers departements
+--drop view fonctionDept
+--create view fonctionDept as select distinct fonction from emp group by n_dept;
+--select * from fonctionDept;
 
 
