@@ -1,4 +1,4 @@
---SCRIPT de creation et remplissage de tables
+                                                                                                                                                                                                                                                                                                                  --SCRIPT de creation et remplissage de tables
 
 ALTER SESSION SET NLS_LANGUAGE = AMERICAN;
 ALTER SESSION SET NLS_TERRITORY = AMERICA;
@@ -121,8 +121,8 @@ select distinct n_dept from emp where n_dept not in (select n_dept from emp wher
 
 --15
 --la vue renvoie l'ensemble des fonctions exercées par les employés des divers departements
---drop view fonctionDept
---create view fonctionDept as select distinct fonction from emp group by n_dept;
---select * from fonctionDept;
+drop view fonctionDept;
+create view fonctionDept as select distinct fonction from emp;
+select * from fonctionDept;
 
 
