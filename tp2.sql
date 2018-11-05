@@ -123,6 +123,7 @@ select distinct n_dept from emp where n_dept not in (select n_dept from emp wher
 --la vue renvoie l'ensemble des fonctions exercées par les employés des divers departements
 drop view fonctionDept;
 create view fonctionDept as select distinct fonction from emp;
-select * from fonctionDept;
+--select * from fonctionDept;
+
 
 
